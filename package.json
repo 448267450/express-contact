@@ -1,10 +1,10 @@
 {
-  "name": "express-todos",
+  "name": "express-contacts",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=express-todos:* nodemon ./bin/www"
+    "dev": "DEBUG=express-contacts:* nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
