@@ -1,16 +1,31 @@
 var express = require('express');
 var router = express.Router();
-// First Name, Last Name, Email Address
-let data = [
-  {firstName: 'Johnson', lastName: 'Sessions', emailAdd: 'johnson.sessions@gmail.com', 
-  id: '733fbcc6-6e69-4eb4-94f3-b71283bbbe37'},
-  {firstName: 'Leah', lastName: 'Dvozak', emailAdd: 'leah.dvozak@gmail.com', 
-  id: '4b88c966-a392-410d-becb-8f34ca07ba6a'}
-];
+const contactsRepo = require('../src/contactsMemoryRepository');
 
-/* GET users listing. */
+
+
+/* GET contacts listing. */
 router.get('/', function(req, res, next) {
+  const data = contactsRepo.findAll();
   res.render('contacts', { title: 'Express Contacts',  contacts: data } );
+});
+
+/* GET contacts add . */
+router.get('/add', function(req, res, next) {
+  res.render('contacts_add', { title: 'Add a Contact' } );
+});
+
+/* POST contacts add . */
+router.post('/add', function(req, res, next) {
+  // console.log(req.body);
+  if(req.body.firstName.trim() === ''){
+    res.render('contacts_add', {title: 'Add a Contact', msg: 'fistName cannot be blank!'});
+  }else{
+    contactsRepo.create({firstName: req.body.firstName.trim(), lastName: req.body.lastName.trim(), 
+      emailAdd: req.body.emailAdd.trim()});
+    res.redirect('/contacts');
+  }
+  
 });
 
 module.exports = router;
