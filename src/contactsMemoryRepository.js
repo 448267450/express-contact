@@ -8,6 +8,7 @@ id: '4b88c966-a392-410d-becb-8f34ca07ba6a'});
 
 const repo = {
     findAll:  () => Array.from(db.values()),
+    findById: (uuid) => db.get(uuid),
     create: (contact) => {
          const newContact = {
             id : crypto.randomUUID(),
@@ -18,6 +19,7 @@ const repo = {
          };
          db.set(newContact.id, newContact);
     },
+    deleteById: (uuid) => db.delete(uuid),
 };
 
 module.exports = repo;

@@ -9,4 +9,5 @@ block content
      #contacts-wrapper 
         ul.contacts-list  
            each val in contacts  
-            li(data-contactid=val.id)= [val.firstName, val.lastName, val.emailAdd].join(' ')
+            li(data-contactid=val.id)
+              a(href=`/contacts/${val.id}`)= [val.firstName, val.lastName].join(' ')

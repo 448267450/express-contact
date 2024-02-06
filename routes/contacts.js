@@ -28,4 +28,32 @@ router.post('/add', function(req, res, next) {
   
 });
 
+/* GET a contact */
+router.get('/:uuid', function(req, res, next) {
+  const contact = contactsRepo.findById(req.params.uuid);
+  if(contact){
+    res.render('contact', { title: 'Your Contact', contact: contact } );
+  }else{
+    res.redirect('/contacts');
+  }
+});
+
+/* GET contacts delete . */
+router.get('/:uuid/delete', function(req, res, next) {
+  const contact = contactsRepo.findById(req.params.uuid);
+  res.render('contacts_delete', { title: 'Delete a Contact', contact: contact } );
+});
+
+/* POST contacts delete . */
+router.post('/:uuid/delete', function(req, res, next) {
+  contactsRepo.deleteById(req.params.uuid);
+  res.redirect('/contacts')
+});
+
+/* GET contacts edit  */
+router.get('/:uuid/edit', function(req, res, next) {
+  const contact = contactsRepo.findById(req.params.uuid);
+  res.render('contacts_edit', {title: 'Edit Contact', contact: contact} )
+});
+
 module.exports = router;
