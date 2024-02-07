@@ -56,4 +56,19 @@ router.get('/:uuid/edit', function(req, res, next) {
   res.render('contacts_edit', {title: 'Edit Contact', contact: contact} )
 });
 
+/* POST contacts edit . */
+router.post('/:uuid/edit', function(req, res, next) {
+  // console.log(req.body);
+  if(req.body.firstName.trim() === ''){
+    const contact = contactsRepo.findById(req.params.uuid);
+    res.render('contacts_add', {title: 'Edit Contact', msg: 'fistName cannot be blank!', contact: contact });
+  }else{
+    const updateContact = {id: req.params.uuid, firstName: req.body.firstName.trim(), lastName: req.body.lastName.trim(), 
+      emailAdd: req.body.emailAdd.trim()};
+    contactsRepo.update(updateContact);
+    res.redirect('/contacts');
+  }
+  
+});
+
 module.exports = router;
