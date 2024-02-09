@@ -5,14 +5,23 @@ block content
   p Use the form below to add a contact 
   hr
   if msg 
-     p(class='redtext')=msg
+     each val in msg 
+        ul 
+          li(class='redtext')= val.msg 
   form(method='POST' action='/contacts/add')
-    input(type='text' name='firstName')
-    | 
-    input(type='text' name='lastName')
-    | 
-    input(type='text' name='emailAdd')
+    label First Name: 
+      |
+      input(type='text' name='firstName') 
+    br 
+    label Last Name:
+      | 
+      input(type='text' name='lastName')
+    br
+    label Email Address:
+      | 
+      input(type='text' name='emailAdd')
+    br 
     | 
     button(type='submit') Create Contact 
     | 
-    a(href='/contacts') Cancel
+    a(href='/contacts') Cancel 
