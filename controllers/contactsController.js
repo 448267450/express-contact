@@ -22,10 +22,12 @@ exports.contacts_create_post =
         if (!result.isEmpty()) {
             res.render('contacts_add', { title: 'Add a Contact', msg: result.array() });
         } else {
-            const newContact = new Contact('', req.body.firstName, req.body.lastName, req.body.emailAdd);
+            const newContact = new Contact('', req.body.firstName, req.body.lastName, req.body.emailAdd, 
+            req.body.contactNotes);
             contactsRepo.create({
                 firstName: req.body.firstName.trim(), lastName: req.body.lastName.trim(),
-                emailAdd: req.body.emailAdd.trim()
+                emailAdd: req.body.emailAdd.trim(), contactNotes: req.body.contactNotes.trim(),
+                // lastModifiedTime: req.body.lastModifiedTime
             });
             res.redirect('/contacts');
         }
@@ -67,7 +69,9 @@ exports.contact_edit_post = function (req, res, next) {
         const contact = contactsRepo.findById(req.params.uuid);
         res.render('contacts_add', { title: 'Edit Contact', msg: 'fistName cannot be blank!', contact: contact });
     } else {
-        const updateContact = new Contact(req.params.uuid, req.body.firstName, req.body.lastName, req.body.emailAdd);
+        const updateContact = new Contact(req.params.uuid, req.body.firstName, 
+            req.body.lastName, req.body.emailAdd,
+            req.body.contactNotes, req.body.lastModifiedTime);
         contactsRepo.update(updateContact);
         res.redirect('/contacts');
     }

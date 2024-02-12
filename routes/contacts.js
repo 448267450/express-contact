@@ -16,8 +16,10 @@ router.get('/add', contactsController.contacts_create_get);
 router.post('/add', 
 body('firstName').trim().notEmpty().withMessage('First Name cannot be blank!') , 
 body('lastName').trim().notEmpty().withMessage('Last Name cannot be blank!') , 
-body('emailAdd').trim().notEmpty().withMessage('Email Address cannot be blank!').isEmail()
+body('emailAdd').trim().isEmail()
 .withMessage('Email field must be inserted in proper email format!') , 
+body('contactNotes').trim(),
+// body('lastModifiedTime'),
 contactsController.contacts_create_post);
 
 /* GET a contact */
