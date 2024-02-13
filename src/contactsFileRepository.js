@@ -50,7 +50,8 @@ const repo = {
         saveData();
     },
     update: (contact) => {
-        db.set(contact.id, contact.lastModefiedTime ,contact);
+        contact.lastModefiedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        db.set(contact.id, contact);
         saveData();
     },
 };
