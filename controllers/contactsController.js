@@ -3,6 +3,8 @@ const { validationResult } = require('express-validator');
 const Contact = require('../src/Contact');
 
 
+
+
 /* GET contacts listing. */
 exports.contacts_list = function (req, res, next) {
     const data = contactsRepo.findAll();
