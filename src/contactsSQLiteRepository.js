@@ -46,9 +46,9 @@ const repo = {
         console.log(`Rows affected: ${info.changes}`);
     },
     update: (contact) => {
-        // contact.lastModefiedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        // db.set(contact.id, contact);
-        // saveData();
+        const stmt = db.prepare("UPDATE contacts SET firstName = ?, lastName = ?, emailAdd = ?, contactNotes = ? WHERE id = ?");
+        const info = stmt.run(contact.firstName, contact.lastName, contact.emailAdd, contact.contactNotes, contact.id);
+        console.log(`Rows affected: ${info.changes}`);
     },
 };
 
