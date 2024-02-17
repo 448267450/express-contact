@@ -1,9 +1,14 @@
 # Lab2 Contact List
 • Wenkun Ren
+
 • wren6@hawk.iit.edu 
+
 • ITMD542 Full-stack Web Development Lab2 
+
 • https://github.com/448267450/express-contact
+
 • The following sections
+
       o Project Description: 
         This is a contact information database. Users can view, add, modify and add contact information as per requirements.
       o Development Environment: 
