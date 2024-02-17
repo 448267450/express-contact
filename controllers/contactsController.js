@@ -67,9 +67,12 @@ exports.contacts_edit_get = function (req, res, next) {
 /* POST contacts edit . */
 exports.contact_edit_post = function (req, res, next) {
     // console.log(req.body);
-    if (req.body.firstName.trim() === '') {
+    const result =  validationResult(req);
+    if (!result.isEmpty()) {
         const contact = contactsRepo.findById(req.params.uuid);
-        res.render('contacts_add', { title: 'Edit Contact', msg: 'fistName cannot be blank!', contact: contact });
+        res.render('contacts_edit', { title: 'Edit a Contact', msg : result.array(), contact: contact });
+        // const contact = contactsRepo.findById(req.params.uuid);
+        // res.render('contacts_add', { title: 'Edit Contact', msg: 'fistName cannot be blank!', contact: contact });
     } else {
         const updateContact = new Contact(req.params.uuid, req.body.firstName, 
             req.body.lastName, req.body.emailAdd,

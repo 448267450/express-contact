@@ -15,7 +15,7 @@ html(lang="en")
           if msg 
             each val in msg 
               ul 
-                li(class='redtext')= val.msg 
+                li(class='text-danger')= val.msg 
           form(method='POST' action='/contacts/add')
             label.col-form-label.text-warning.font-weight-bold(for="exampleInput") First Name: 
             input.form-control.rounded.form-control-sm(type='text' name='firstName') 

@@ -15,19 +15,19 @@ html(lang="en")
           if msg 
             each val in msg 
               ul 
-                li(class='redtext')= val.msg 
+                li(class='text-danger')= val.msg 
           form(method='POST' action=`/contacts/${contact.id}/edit`)
             label.col-form-label.text-warning.font-weight-bold First Name: 
             input.form-control.rounded.form-control-sm(type='text' name='firstName' value=contact.firstName)
-          
+
             label.col-form-label.text-warning.font-weight-bold Last Name:
             input.form-control.rounded.form-control-sm(type='text' name='lastName' value=contact.lastName)
-          
+
             label.col-form-label.text-warning.font-weight-bold Email Address:
             input.form-control.rounded.form-control-sm(type='text' name='emailAdd' value=contact.emailAdd)
-          
+
             label.col-form-label.text-warning.font-weight-bold Contact Notes:
-            textarea.form-control.rounded.form-control-sm(name="contactNotes", cols="30", rows="10" ) 
+            textarea.form-control.rounded.form-control-sm(name="contactNotes" cols="30" rows="10" ) 
             hr
             button.btn.btn-outline-success.btn-sm(type='submit') Save Changes
             a.btn.btn-outline-danger.btn-lg.btn-sm.mx-3(href='/contacts') Cancel

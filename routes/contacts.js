@@ -14,7 +14,7 @@ router.get('/add', contactsController.contacts_create_get);
 
 /* POST contacts add . */
 router.post('/add',
-    body('firstName').trim().notEmpty().escape()
+    body('firstName').trim().isLength().escape()
         .withMessage('First Name cannot be blank!'),
     body('lastName').trim().notEmpty().escape()
         .withMessage('Last Name cannot be blank!'),
