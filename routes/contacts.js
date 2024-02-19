@@ -14,14 +14,13 @@ router.get('/add', contactsController.contacts_create_get);
 
 /* POST contacts add . */
 router.post('/add',
-    body('firstName').trim().isLength().escape()
+    body('firstName').trim().notEmpty().escape()
         .withMessage('First Name cannot be blank!'),
     body('lastName').trim().notEmpty().escape()
         .withMessage('Last Name cannot be blank!'),
-    body('emailAdd').trim().isEmail().escape()
+    body('emailAdd').optional({ checkFalsy: true }).trim().isEmail().escape()
         .withMessage('Email field must be inserted in proper email format!'),
-    body('contactNotes').notEmpty().escape()
-        .withMessage('Contact notes cannot be blank!'),
+    body('contactNotes').escape(),
 
     contactsController.contacts_create_post);
 
@@ -43,10 +42,9 @@ router.post('/:uuid/edit',
         .withMessage('First Name cannot be blank!'),
     body('lastName').trim().notEmpty().escape()
         .withMessage('Last Name cannot be blank!'),
-    body('emailAdd').trim().isEmail().escape()
+    body('emailAdd').optional({ checkFalsy: true }).trim().isEmail().escape()
         .withMessage('Email field must be inserted in proper email format!'),
-    body('contactNotes').notEmpty().escape()
-        .withMessage('Contact notes cannot be blank!'),
+    body('contactNotes').escape(),
 
     contactsController.contact_edit_post);
 
