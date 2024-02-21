@@ -1,4 +1,5 @@
-const contactsRepo = require('../src/contactsSQLiteRepository');
+// const contactsRepo = require('../src/contactsSQLiteRepository');
+const contactsRepo = require('../src/contactsFileRepository');
 const { validationResult } = require('express-validator');
 const Contact = require('../src/Contact');
 
